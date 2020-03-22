@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+</head>
+<body>
+  <div class="wrapper">
+    <button onclick="dispatch({type: 'add', n: 2})">+</button>
+    <span class="count-info">10</span>
+    <button onclick="dispatch({type: 'reduce', n: 2})">-</button>
+  </div>
+
+  <script>
+    const countInfo =  document.querySelector('.count-info')
+
+    const renderState = {
+      count: 5
+    }
+    const renderCount = (state) => {
+      countInfo.innerHTML = state.count
+    }
+    // const increatement = (n) => {
+    //   renderState.count += n
+    //   renderCount(renderState)
+    // }
+    // const decreatement = (n) => {
+    //   renderState.count -= n
+    //   renderCount(renderState)
+    // }
+
+    const changeState = (action) => {
+      switch(action.type) {
+        case 'add': 
+          renderState.count += action.n
+          break;
+        case 'reduce':
+          renderState.count -= action.n
+        default: 
+        break;
+      }
+    }
+
+    const dispatch = (action) => {
+      changeState(action)
+      renderCount(renderState)
+    }
+  </script>
+</body>
+</html>
